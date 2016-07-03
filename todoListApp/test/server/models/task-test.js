@@ -31,5 +31,25 @@ describe('task tests', function() {
 			done();
 		}
 		task.all(callback);
+	});
+
+	it('add should add a task', function(done) {
+		var newTask = {title: 'Sample', description: 'This is a sample task', category: 'general', completed: 'n'};
+
+		var callback = function(msg) {
+			expect(msg).to.be.eql('task added');
+
+			var fetchAllData = function(err, data) {
+				expect(data[1].title).to.be.eql(newTask.title);
+				expect(data[1].description).to.be.eql(newTask.description);
+				expect(data[1].category).to.be.eql(newTask.category);
+				expect(data[1].completed).to.be.eql(newTask.completed);
+				done();
+			}
+
+			task.all(fetchAllData);
+		}
+
+		task.add(newTask, callback);
 	})
 })
