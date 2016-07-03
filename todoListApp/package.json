@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "startdb": "mongod --dbpath db",
-    "test-server": "mocha --watch --recursive test/server"
+    "test-server": "mocha --watch --recursive test/server",
+    "cover-server": "istanbul cover _mocha -- --recursive test/server"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
