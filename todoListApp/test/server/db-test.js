@@ -14,4 +14,11 @@ describe('db tests', function() {
 		db.close();
 		expect(db.get()).to.be.null;
 	});
+
+	it('close should close the connection', function(done) {
+		db.connection = {
+			close: function() { done(); }
+		}
+		db.close();
+	});
 });

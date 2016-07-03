@@ -9,6 +9,6 @@ module.exports = {
 
 	close: function() {
 		if(this.connection)
-			return this.connection;
+			return this.connection.close();
 	}
 }
