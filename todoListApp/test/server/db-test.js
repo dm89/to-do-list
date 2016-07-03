@@ -31,4 +31,13 @@ describe('db tests', function() {
 
 		db.connect('mongodb://localhost/mytestdb', callback);
 	});
+
+	it('connect should fail for incorrect protocol', function(done) {
+		var callback = function(err) {
+			expect(err).to.be.eql('invalid schema, expected mongodb');
+			done();
+		}
+
+		db.connect('blah://localhost/mytestdb', callback);
+	});
 });
