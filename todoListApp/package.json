@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "startdb": "mongod --dbpath db",
     "test-server": "mocha --watch --recursive test/server"
   },
   "dependencies": {

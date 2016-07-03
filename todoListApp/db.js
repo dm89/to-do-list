@@ -4,11 +4,25 @@ module.exports = {
 	connection: null,
 
 	get: function() {
-		return null;
+		return this.connection;
 	},
 
 	close: function() {
 		if(this.connection)
 			return this.connection.close();
+	},
+
+	connect: function(dbName, callback) {
+		var self = this;
+		var cacheConnection = function(err, db) {
+			self.connection = db;
+			callback(err);
+		}
+
+		try {
+			MongoClient.connect(dbName, cacheConnection);
+		} catch(ex) {
+			callback(ex.message);
+		}
 	}
 }

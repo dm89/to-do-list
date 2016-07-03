@@ -21,4 +21,14 @@ describe('db tests', function() {
 		}
 		db.close();
 	});
+
+	it('connect should set connection for good db name', function(done) {
+		var callback = function(err) {
+			expect(err).to.be.null;
+			expect(db.get().databaseName).to.be.eql('mytestdb');
+			done()
+		}
+
+		db.connect('mongodb://localhost/mytestdb', callback);
+	});
 });
