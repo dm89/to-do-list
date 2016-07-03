@@ -12,7 +12,8 @@ describe('tasklist routes test', function() {
 		sandbox = sinon.sandbox.create();
 
 		router = {
-			get: sinon.spy()
+			get: sinon.spy(),
+			post: sinon.spy()
 		};
 
 		sandbox.stub(express, 'Router')
@@ -49,4 +50,28 @@ describe('tasklist routes test', function() {
 		var req = {};
 		theHandler(req, res);
 	});
+
+	it('tasklist registers / with post on the router', function() {
+		expect(router.post.calledWith('/', sinon.match.any)).to.be.true;
+	});
+
+	it('the handler for post / sends a success response for a valid insert', function() {
+		var newTask = {title: 'Test', description: 'This is a test task', 
+						category: 'general', completed: 'n'};
+
+		var res = {
+			send: function(msg) {
+				expect(msg).to.be.eql('added task');
+			}
+		};
+
+		task.add = function(newObj, callback) {
+			callback(null, 'added task');
+		}
+		
+		var theHandler = router.post.firstCall.args[1];
+		var req = newTask;
+		theHandler(req, res);
+	});
+
 });
