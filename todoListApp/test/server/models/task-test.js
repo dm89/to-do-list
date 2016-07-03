@@ -51,5 +51,15 @@ describe('task tests', function() {
 		}
 
 		task.add(newTask, callback);
+	});
+
+	it('add with no task should fail', function(done) {
+		var callback = function(msg) {
+			expect(msg).to.be.eql('unable to add task');
+			done();
+		}
+
+		var newTask = undefined;
+		task.add(newTask, callback);
 	})
 })
