@@ -61,5 +61,39 @@ describe('task tests', function() {
 
 		var newTask = undefined;
 		task.add(newTask, callback);
-	})
+	});
+
+	it('add should fails when no title', function(done) {
+		var newTask = {description: 'This is a sample task', category: 'general', completed: 'n'};
+
+		var callback = function(msg) {
+		  expect(msg).to.be.eql('unable to add task');
+		  done();
+		}
+
+		task.add(newTask, callback);
+	});
+
+	it('add should fails when no category', function(done) {
+		var newTask = {description: 'This is a sample task', category: 'general', completed: 'n'};
+
+		var callback = function(msg) {
+		  expect(msg).to.be.eql('unable to add task');
+		  done();
+		}
+
+		task.add(newTask, callback);
+	});
+
+	it('add should fails when no completed field', function(done) {
+		var newTask = {description: 'This is a sample task', category: 'general', completed: 'n'};
+
+		var callback = function(msg) {
+		  expect(msg).to.be.eql('unable to add task');
+		  done();
+		}
+
+		task.add(newTask, callback);
+	});
+
 })

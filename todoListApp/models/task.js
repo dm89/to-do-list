@@ -13,7 +13,8 @@ module.exports = {
 				callback('task added');
 		}
 
-		if(!newTask)
+		if(!newTask || newTask.title === undefined || 
+			newTask.category === undefined || newTask.completed === undefined)
 			callback('unable to add task');
 		else
 			db.get().collection(collectionName).insertOne(newTask, inserted);
